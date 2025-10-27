@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:dt="clr-namespace:MauiReorderAndSelector.DataTemplates"
+             xmlns:local="clr-namespace:MauiReorderAndSelector"
+             x:Class="MauiReorderAndSelector.MainPage">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="GreenTemplate">
+            <local:GreenView/>
+        </DataTemplate>
+        <DataTemplate x:Key="BlueTemplate">
+            <local:BlueView/>
+        </DataTemplate>
+        <dt:TestTemplateSelector x:Key="TestTemplateSelector"
+                                 GreenTemplate="{StaticResource GreenTemplate}"
+                                 BlueTemplate="{StaticResource BlueTemplate}"/>
+    </ContentPage.Resources>
+
+    <CollectionView
+         x:Name="TestCollection"
+         ItemTemplate="{StaticResource TestTemplateSelector}"
+         CanReorderItems="True"
+         HorizontalScrollBarVisibility="Never"
+         VerticalScrollBarVisibility="Never"
+         SelectionMode="None">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2"
+                              VerticalItemSpacing="10" HorizontalItemSpacing="10"/>
+        </CollectionView.ItemsLayout>
+    </CollectionView>
+    
+</ContentPage>
